@@ -1,0 +1,6 @@
+USE droneportation;
+SELECT d.DroneID,m.Brand,m.Model, count(d.DroneID) AS NumFlights
+FROM  Drone d LEFT JOIN FlightReservation f ON d.DroneID=f.DroneID INNER JOIN Model m ON m.ModelID=d.ModelID
+WHERE f.StatusID=4 OR f.StatusID=5
+GROUP BY d.DroneID
+ORDER BY m.Brand,m.Model,NumFlights;
